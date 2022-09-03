@@ -1,16 +1,14 @@
 import React from "react";
 
 const SearchBox = ({ setSearchValue }) => {
-  const handleKeyDown = (event) => {
-    if (event.key !== "Enter") return;
-
+  const handleChange = (event) => {
     const inputValue = event.target.value;
     setSearchValue(inputValue);
   };
 
   return (
     <div>
-      <input type="text" onKeyDown={handleKeyDown} />
+      <input type="text" onChange={handleChange} />
     </div>
   );
 };

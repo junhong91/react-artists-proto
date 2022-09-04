@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import ArtistList from "./ArtistList";
-import SearchBox from "./SearchBox";
+import ArtistList from "../components/ArtistList";
+import SearchBox from "../components/SearchBox";
 import { useArtistsContext } from "../providers/ArtistsProvider";
 
-const ArtistMain = () => {
+const Artists = () => {
   const { artists, updateArtists } = useArtistsContext();
   const [searchValue, setSearchValue] = useState([]);
 
-  const search = (searchValue) => {
+  // Search artist by name
+  const _searchArtistByName = (searchValue) => {
     const inputValue = searchValue.toString().trim().toLowerCase();
     const inputLength = inputValue.length;
 
@@ -18,16 +19,16 @@ const ArtistMain = () => {
   };
 
   useEffect(() => {
-    const filteredArtists = search(searchValue);
+    const filteredArtists = _searchArtistByName(searchValue);
     updateArtists(filteredArtists);
   }, [searchValue]);
 
   return (
     <>
       <SearchBox setSearchValue={setSearchValue} />
-      {artists ? <ArtistList artists={artists} /> : <div>Not found</div>}
+      <ArtistList artists={artists} />
     </>
   );
 };
 
-export default ArtistMain;
+export default Artists;

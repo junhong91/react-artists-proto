@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import NotFound from "../page/NotFound.page";
 
@@ -9,12 +9,10 @@ const SocialNFTMarketRoutes = ({ routesElem }) => {
   });
 
   return (
-    <Router>
-      <Routes>
-        {renderRoutes}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+    <Routes>
+      {renderRoutes}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 

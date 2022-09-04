@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import { createContext, useContext } from "react";
 import useArtists from "../hooks/use-artists.hook";
 
@@ -7,9 +8,11 @@ export default function ArtistsProvider({ children }) {
   const { data: artists, loading, error, updateArtists } = useArtists();
 
   return (
-    <ArtistsContext.Provider value={{ artists, loading, error, updateArtists }}>
-      {children}
-    </ArtistsContext.Provider>
+    <BrowserRouter>
+      <ArtistsContext.Provider value={{ artists, loading, error, updateArtists }}>
+        {children}
+      </ArtistsContext.Provider>
+    </BrowserRouter>
   );
 }
 

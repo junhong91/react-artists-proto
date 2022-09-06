@@ -1,20 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import ArtistDetail from "./components/ArtistDetail";
-import ArtistMain from "./components/ArtistMain";
-import Home from "./page/Home.page";
+import ArtistsProvider from "./providers/ArtistsProvider";
+import SocialNFTMarketRoutes from "./components/Routes.comp";
+import { ROUTES } from "./config/routes.config";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          <Route exact path="/details/:id" element={<ArtistDetail />} />
-          <Route exact path="/artists" element={<ArtistMain />} />
-          <Route exact path="/" element={<Home />} />
-        </Routes>
-      </Router>
-    </>
+    <ArtistsProvider>
+      <Navbar />
+      <SocialNFTMarketRoutes routesElem={ROUTES} />
+    </ArtistsProvider>
   );
 }
 

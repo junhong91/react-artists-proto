@@ -1,0 +1,24 @@
+.navbar__wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+}
+
+.navbar__logo {
+  margin: 0 1rem;
+  max-width: 8rem;
+  cursor: pointer;
+}
+
+.navbar__menu {
+  display: flex;
+  list-style-type: none; /* Remove dot */
+}
+
+.navbar__menu__item {
+  padding: 0.5rem 1rem;
+  margin: 0 1.2rem;
+  text-decoration: none; /* Remove link */
+  cursor: pointer;
+}

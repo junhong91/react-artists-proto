@@ -5,7 +5,6 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
-
   return (
     <nav className="navbar__wrapper">
       <img
@@ -14,7 +13,6 @@ const Navbar = () => {
         alt="logo"
         onClick={() => navigate("/")}
       />
-
       <ul className="navbar__menu">
         {NAV_ROUTES.map((route) => (
           <li className="navbar__menu__item" key={route.path}>

@@ -5,6 +5,7 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
   return (
     <nav className="navbar__wrapper">
       <img

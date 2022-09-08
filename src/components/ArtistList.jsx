@@ -7,7 +7,7 @@ const ArtistList = ({ artists }) => {
   return (
     <>
       {artists.map((artist) => {
-        return <ArtistCard artist={artist} />;
+        return <ArtistCard artist={artist} key={artist.id} />;
       })}
     </>
   );

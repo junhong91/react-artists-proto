@@ -24,12 +24,12 @@
   z-index: 101;
 }
 
-.wallet__title {
+.title {
   display: flex;
   align-items: center;
 }
 
-.wallet__title__icon {
+.title__icon {
   margin-right: 1rem;
   cursor: pointer;
 }
@@ -41,7 +41,7 @@
   padding: 0;
 }
 
-.wallet__menu__item {
+.menu__item {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -51,12 +51,12 @@
   cursor: pointer;
 }
 
-.wallet__menu__item__icon {
+.menu__item__icon {
   margin-right: 1rem;
   height: 2rem;
 }
 
-.wallet__menu__item__name {
+.menu__item__name {
   font-size: 1rem;
   font-weight: bold;
 }

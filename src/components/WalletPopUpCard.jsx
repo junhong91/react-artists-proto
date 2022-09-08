@@ -8,10 +8,10 @@ const WalletPopUpCard = ({ title, walletItems, onClose, onHandleLoginMetaMask })
     <>
       <div className="wrapper">
         <div className="dimmed">
-          <div className="wallet__container" onClick={onClose}>
-            <div className="wallet__title">
+          <div className="wallet__container">
+            <div className="title">
               <FontAwesomeIcon
-                className="wallet__title__icon"
+                className="title__icon"
                 icon="fa-solid fa-chevron-left fa-lg"
                 onClick={onClose}
               />
@@ -19,9 +19,9 @@ const WalletPopUpCard = ({ title, walletItems, onClose, onHandleLoginMetaMask })
             </div>
             <ul className="wallet__menu">
               {walletItems.map((item) => (
-                <li className="wallet__menu__item" onClick={onHandleLoginMetaMask}>
-                  <img className="wallet__menu__item__icon" alt={item.name} src={item.iconURL} />
-                  <div className="wallet__menu__item__name">{item.name}</div>
+                <li className="menu__item" onClick={onHandleLoginMetaMask}>
+                  <img className="menu__item__icon" alt={item.name} src={item.iconURL} />
+                  <div className="menu__item__name">{item.name}</div>
                 </li>
               ))}
             </ul>

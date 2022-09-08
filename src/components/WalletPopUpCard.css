@@ -13,7 +13,7 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.wallet__card__container {
+.wallet__container {
   text-align: center;
   margin: 6rem auto;
   padding: 1rem;
@@ -24,10 +24,14 @@
   z-index: 101;
 }
 
-.wallet__card__title {
+.wallet__title {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+}
+
+.wallet__title__icon {
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
 .wallet__menu {
@@ -47,18 +51,18 @@
   cursor: pointer;
 }
 
-.wallet__menu__item img {
+.wallet__menu__item__icon {
   margin-right: 1rem;
   height: 2rem;
 }
 
-.wallet__menu__item__title {
+.wallet__menu__item__name {
   font-size: 1rem;
   font-weight: bold;
 }
 
 @media screen and (max-width: 768px) {
-  .wallet__card__container {
+  .wallet__container {
     width: 80%;
   }
 }

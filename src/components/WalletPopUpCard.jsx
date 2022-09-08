@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import "./WalletPopUpCard.css";
 
-const WalletPopUpCard = ({ header, items, onClose, onHandleLoginMetaMask }) => {
+const WalletPopUpCard = ({ header, items, onClose }) => {
   return (
     <>
       <div className="wrapper">
@@ -15,10 +15,14 @@ const WalletPopUpCard = ({ header, items, onClose, onHandleLoginMetaMask }) => {
             </div>
             <ul className="wallet__menu">
               {items.map((item) => (
-                <li className="menu__item" onClick={onHandleLoginMetaMask}>
+                <button
+                  className="menu__item"
+                  onClick={item.onClickHandler}
+                  disabled={item.disabled}
+                >
                   <img className="menu__item__icon" alt={item.name} src={item.iconURL} />
                   <div className="menu__item__name">{item.name}</div>
-                </li>
+                </button>
               ))}
             </ul>
           </div>

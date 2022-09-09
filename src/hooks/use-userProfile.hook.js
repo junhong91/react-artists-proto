@@ -19,9 +19,6 @@ export default function useUserProfile() {
     accounts,
     email,
     username,
-    setAccounts,
-    setEmail,
-    setUsername,
     saveUserProfile,
   };
 }

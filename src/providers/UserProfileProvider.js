@@ -5,8 +5,7 @@ import useUserProfile from "../hooks/use-userProfile.hook";
 const UserProfileContext = createContext();
 
 export default function UserProfileProvider({ children }) {
-  const { accounts, email, username, setAccounts, setEmail, setUsername, saveUserProfile } =
-    useUserProfile();
+  const { accounts, email, username, saveUserProfile } = useUserProfile();
 
   return (
     <UserProfileContext.Provider
@@ -14,9 +13,6 @@ export default function UserProfileProvider({ children }) {
         accounts,
         email,
         username,
-        setAccounts,
-        setEmail,
-        setUsername,
         saveUserProfile,
       }}
     >

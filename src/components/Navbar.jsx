@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { NAV_ROUTES } from "../config/routes.config";
 import "./Navbar.css";
 
-const Navbar = ({ navbarLogo, signIn }) => {
+const Navbar = ({ navbarLogo, navbarSignInBtnProps }) => {
   const navigate = useNavigate();
   function gotoHome() {
     navigate("/");
@@ -20,8 +20,10 @@ const Navbar = ({ navbarLogo, signIn }) => {
             </Link>
           </li>
         ))}
-        <button className="navbar__menu__btn" onClick={signIn.onClickHandler}>
-          {signIn.userProfile.accounts.length === 0 ? signIn.btnName : signIn.userProfile.name}
+        <button className="navbar__menu__btn" onClick={navbarSignInBtnProps.onClick}>
+          {navbarSignInBtnProps.userProfile.accounts.length === 0
+            ? navbarSignInBtnProps.btnName
+            : navbarSignInBtnProps.userProfile.name}
         </button>
       </ul>
     </nav>

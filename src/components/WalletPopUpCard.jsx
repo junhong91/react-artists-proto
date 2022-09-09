@@ -15,11 +15,7 @@ const WalletPopUpCard = ({ header, items, onClose }) => {
             </div>
             <ul className="wallet__menu">
               {items.map((item) => (
-                <button
-                  className="menu__item"
-                  onClick={item.onClickHandler}
-                  disabled={item.disabled}
-                >
+                <button className="menu__item" onClick={item.onClick} disabled={item.disabled}>
                   <img className="menu__item__icon" alt={item.name} src={item.iconURL} />
                   <div className="menu__item__name">{item.name}</div>
                 </button>

@@ -16,34 +16,14 @@ function App() {
     setWalletCardVisible(false);
   }, []);
 
-  const navbarLogo = {
-    imgURL: `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png`,
-  };
   const navbarSignInBtnProps = {
     btnName: "SIGN IN",
     userProfile: {
       name: "JUNHONG LEE",
       accounts: accounts,
     },
-    onClick: handleToggleWalletCard,
+    onClick: () => setWalletCardVisible(!isWalletCardVisible),
   };
-  const walletHeader = { title: "지갑을 선택하세요", icon: "fa-solid fa-chevron-left fa-lg" };
-  const walletItems = [
-    {
-      name: "Meta Mask",
-      iconURL: "https://opensea.io/static/images/logos/metamask-fox.svg",
-      onClick: handleConnectWallet,
-      disabled: isDisabled,
-    },
-  ];
-
-  function handleToggleWalletCard() {
-    setWalletCardVisible(!isWalletCardVisible);
-  }
-
-  function handleCloseWallet() {
-    setWalletCardVisible(false);
-  }
 
   async function handleConnectWallet() {
     try {
@@ -57,10 +37,24 @@ function App() {
 
   return (
     <>
-      <Navbar navbarLogo={navbarLogo} navbarSignInBtnProps={navbarSignInBtnProps} />
+      <Navbar
+        navbarLogo={{ imgURL: `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png` }}
+        navbarSignInBtnProps={navbarSignInBtnProps}
+      />
       <CreaOnRoutes routesElem={ROUTES} />
       {isWalletCardVisible && (
-        <WalletPopUpCard header={walletHeader} items={walletItems} onClose={handleCloseWallet} />
+        <WalletPopUpCard
+          header={{ title: "지갑을 선택하세요", icon: "fa-solid fa-chevron-left fa-lg" }}
+          items={[
+            {
+              name: "Meta Mask",
+              iconURL: "https://opensea.io/static/images/logos/metamask-fox.svg",
+              onClick: handleConnectWallet,
+              disabled: isDisabled,
+            },
+          ]}
+          onClose={() => setWalletCardVisible(false)}
+        />
       )}
     </>
   );

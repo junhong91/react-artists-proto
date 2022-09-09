@@ -1,4 +1,12 @@
 .search-box__input {
-  height: 2rem;
+  border-radius: 0.6rem;
+  border: 2px solid rgb(229, 232, 235);
+  height: 3rem;
   width: 20rem;
+}
+
+@media screen and (max-width: 480px) {
+  .search-box__wrapper {
+    text-align: center;
+  }
 }

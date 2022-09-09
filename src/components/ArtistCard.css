@@ -3,11 +3,17 @@
   padding-right: 4rem;
 }
 
-.item__title {
+.artist-card__menu__item__title {
   margin: 0.6rem 0;
 }
 
-.item__description {
+.artist-card__menu__item__description {
   margin-top: 0.8rem;
   margin-bottom: 4rem;
+}
+
+@media screen and (max-width: 480px) {
+  .artist-card__menu {
+    padding-right: 0;
+  }
 }

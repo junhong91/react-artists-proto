@@ -9,7 +9,7 @@ const SearchBox = ({ setSearchValue }) => {
   }
 
   return (
-    <div>
+    <div className="search-box__wrapper">
       <input
         className="search-box__input"
         type="text"

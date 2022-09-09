@@ -4,3 +4,9 @@
   margin: 3rem 0;
   cursor: pointer;
 }
+
+@media screen and (max-width: 480px) {
+  .artist-list__wrapper {
+    justify-content: center;
+  }
+}

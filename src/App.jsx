@@ -43,9 +43,6 @@ function App() {
   function handleCloseWallet() {
     setWalletCardVisible(false);
   }
-  function disableMetaMaskBtn(flag) {
-    setDisabled(flag);
-  }
 
   /**
    * Check if the MetaMask extension is installed
@@ -58,13 +55,13 @@ function App() {
 
   async function connectToMetaMask() {
     try {
-      disableMetaMaskBtn(true);
+      setDisabled(true);
       const { ethereum } = window;
       return await ethereum.request({ method: "eth_requestAccounts" });
     } catch (error) {
       console.error(error);
     } finally {
-      disableMetaMaskBtn(false);
+      setDisabled(false);
     }
   }
 

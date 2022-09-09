@@ -8,20 +8,19 @@ const Artists = () => {
   const { artists, updateArtists } = useArtistsContext();
   const [searchValue, setSearchValue] = useState([]);
 
+  useEffect(() => {
+    const filteredArtists = searchByName(searchValue);
+    updateArtists(filteredArtists);
+  }, [searchValue]);
+
   // Search artist by name
-  const _searchArtistByName = (searchValue) => {
+  function searchByName(searchValue) {
     const inputValue = searchValue.toString().trim().toLowerCase();
     const inputLength = inputValue.length;
-
     return inputLength === 0
       ? artists
       : artists.filter((a) => a.name.toLowerCase().slice(0, inputLength) === inputValue);
-  };
-
-  useEffect(() => {
-    const filteredArtists = _searchArtistByName(searchValue);
-    updateArtists(filteredArtists);
-  }, [searchValue]);
+  }
 
   return (
     <>

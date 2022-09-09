@@ -1,10 +1,10 @@
 import React from "react";
 
 const SearchBox = ({ setSearchValue }) => {
-  const handleChange = (event) => {
+  function handleChange(event) {
     const inputValue = event.target.value;
     setSearchValue(inputValue);
-  };
+  }
 
   return (
     <div>

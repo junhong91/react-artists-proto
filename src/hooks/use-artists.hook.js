@@ -1,4 +1,5 @@
 import { useEffect, useReducer, useState } from "react";
+
 import { defaultReducer } from "../reducer/defaultReducer";
 import { ARTISTS } from "../config/artists.config";
 

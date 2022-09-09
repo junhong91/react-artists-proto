@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import MetaMaskOnboarding from "@metamask/onboarding";
 
-import ArtistsProvider from "./providers/ArtistsProvider";
 import CreaOnRoutes from "./components/Routes.comp";
 import { ROUTES } from "./config/routes.config";
 import Navbar from "./components/Navbar";
 import WalletPopUpCard from "./components/WalletPopUpCard";
+import useMetaMask from "./hooks/use-metamask.hook";
+import { useUserProfileContext } from "./providers/UserProfileProvider";
 
 function App() {
-  const [isDisabled, setDisabled] = useState(false);
-  const [accounts, setAccounts] = useState([]);
   const [isWalletCardVisible, setWalletCardVisible] = useState(false);
+  const { isDisabled, handleLoginMetaMask } = useMetaMask();
+  const { accounts, setAccounts } = useUserProfileContext();
 
   useEffect(() => {
     setWalletCardVisible(false);
@@ -32,7 +32,7 @@ function App() {
     {
       name: "Meta Mask",
       iconURL: "https://opensea.io/static/images/logos/metamask-fox.svg",
-      onClickHandler: handleLoginMetaMask,
+      onClickHandler: handleConnectWallet,
       disabled: isDisabled,
     },
   ];
@@ -40,57 +40,30 @@ function App() {
   function handleSignIn() {
     setWalletCardVisible(!isWalletCardVisible);
   }
+
   function handleCloseWallet() {
     setWalletCardVisible(false);
   }
 
-  /**
-   * Check if the MetaMask extension is installed
-   * @returns true(installed) or false(not installed)
-   */
-  function isMetaMaskInstalled() {
-    const { ethereum } = window;
-    return Boolean(ethereum && ethereum.isMetaMask);
-  }
-
-  async function connectToMetaMask() {
+  async function handleConnectWallet() {
     try {
-      setDisabled(true);
-      const { ethereum } = window;
-      return await ethereum.request({ method: "eth_requestAccounts" });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setDisabled(false);
-    }
-  }
-
-  /**
-   * Handle to login metamask wallet
-   * Check if metamask was installed, if not install metamask on your browser.
-   * Otherwise, connect to metamask.
-   */
-  async function handleLoginMetaMask() {
-    if (!isMetaMaskInstalled()) {
-      const forwarderOrigin = "http://localhost:9010";
-      const onboarding = new MetaMaskOnboarding({ forwarderOrigin });
-      onboarding.startOnboarding();
-      window.location.reload();
-    } else {
-      const newAccounts = await connectToMetaMask();
+      const newAccounts = await handleLoginMetaMask();
       setAccounts(newAccounts);
+      console.log(newAccounts);
+      setWalletCardVisible(false);
+    } catch (err) {
+      console.error(err);
     }
-    setWalletCardVisible(false);
   }
 
   return (
-    <ArtistsProvider>
+    <>
       <Navbar navbarLogo={navbarLogo} signIn={signIn} />
       <CreaOnRoutes routesElem={ROUTES} />
       {isWalletCardVisible && (
         <WalletPopUpCard header={walletHeader} items={walletItems} onClose={handleCloseWallet} />
       )}
-    </ArtistsProvider>
+    </>
   );
 }
 

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 import ArtistList from "../components/ArtistList";
+import Header from "../components/common/Header";
 import SearchBox from "../components/SearchBox";
 import { useArtistsContext } from "../providers/ArtistsProvider";
+import "./Artists.css";
 
 const Artists = () => {
   const { artists, updateArtists } = useArtistsContext();
@@ -23,10 +25,11 @@ const Artists = () => {
   }
 
   return (
-    <>
+    <div className="artists__wrapper">
+      <Header title="Artists" />
       <SearchBox setSearchValue={setSearchValue} />
       <ArtistList artists={artists} />
-    </>
+    </div>
   );
 };
 

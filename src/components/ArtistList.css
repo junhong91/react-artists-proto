@@ -1,4 +1,6 @@
 .artist-list__wrapper {
-  background-color: blue;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 3rem 0;
   cursor: pointer;
 }

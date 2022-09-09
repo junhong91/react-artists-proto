@@ -2,7 +2,7 @@ import { useState } from "react";
 import MetaMaskOnboarding from "@metamask/onboarding";
 
 export default function useMetaMask() {
-  const [isDisabled, setDisabled] = useState(false);
+  const [isMetaMaskBtnDisabled, setMetaMaskBtnDisable] = useState(false);
 
   /**
    * Check if the MetaMask extension is installed
@@ -19,13 +19,13 @@ export default function useMetaMask() {
    */
   async function getEthAccounts() {
     try {
-      setDisabled(true);
+      setMetaMaskBtnDisable(true);
       const { ethereum } = window;
       return await ethereum.request({ method: "eth_requestAccounts" });
     } catch (error) {
       console.error(error);
     } finally {
-      setDisabled(false);
+      setMetaMaskBtnDisable(false);
     }
   }
 
@@ -49,7 +49,7 @@ export default function useMetaMask() {
   }
 
   return {
-    isDisabled,
+    isMetaMaskBtnDisabled,
     handleLoginMetaMask,
   };
 }

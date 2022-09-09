@@ -12,7 +12,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { isWalletCardVisible, setWalletCardVisible } = useWallet();
   const { accounts, setAccounts } = useUserProfileContext();
-  const { isDisabled, handleLoginMetaMask } = useMetaMask();
+  const { isMetaMaskBtnDisabled, handleLoginMetaMask } = useMetaMask();
 
   const LOGO = `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png`;
   const SIGNINPROPS = {
@@ -62,8 +62,8 @@ const Navbar = () => {
           {
             name: "Meta Mask",
             iconURL: "https://opensea.io/static/images/logos/metamask-fox.svg",
+            disabled: isMetaMaskBtnDisabled,
             onClick: handleLogin,
-            disabled: isDisabled,
           },
         ]}
         visible={isWalletCardVisible}

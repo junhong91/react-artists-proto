@@ -6,12 +6,15 @@ import "./Navbar.css";
 
 const Navbar = ({ navbarLogo, navbarSignInBtnProps }) => {
   const navigate = useNavigate();
-  function gotoHome() {
-    navigate("/");
-  }
+
   return (
     <nav className="navbar__wrapper">
-      <img className="navbar__logo" src={navbarLogo.imgURL} alt="logo" onClick={gotoHome} />
+      <img
+        className="navbar__logo"
+        src={navbarLogo.imgURL}
+        alt="logo"
+        onClick={() => navigate("/")}
+      />
       <ul className="navbar__menu">
         {NAV_ROUTES.map((route) => (
           <li className="navbar__menu__item" key={route.path}>

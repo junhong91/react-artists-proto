@@ -1,4 +1,4 @@
-.header__title {
+.common__header__title {
   font-size: 3rem;
   font-weight: bold;
 
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 480px) {
-  .header__title {
+  .common__header__title {
     text-align: center;
   }
 }

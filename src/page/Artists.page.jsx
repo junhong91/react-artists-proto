@@ -15,7 +15,6 @@ const Artists = () => {
     updateArtists(filteredArtists);
   }, [searchValue]);
 
-  // Search artist by name
   function searchByName(searchValue) {
     const inputValue = searchValue.toString().trim().toLowerCase();
     const inputLength = inputValue.length;
@@ -27,7 +26,10 @@ const Artists = () => {
   return (
     <div className="artists__wrapper">
       <Header title="Artists" />
-      <SearchBox setSearchValue={setSearchValue} />
+      <SearchBox
+        placeHolder="Search by Artist name, title, and tag"
+        setSearchValue={setSearchValue}
+      />
       <ArtistList artists={artists} />
     </div>
   );

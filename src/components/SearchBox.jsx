@@ -2,7 +2,7 @@ import React from "react";
 
 import "./SearchBox.css";
 
-const SearchBox = ({ setSearchValue }) => {
+const SearchBox = ({ placeHolder, setSearchValue }) => {
   function handleChange(event) {
     const input = event.target.value;
     setSearchValue(input);
@@ -13,7 +13,7 @@ const SearchBox = ({ setSearchValue }) => {
       <input
         className="search-box__input"
         type="text"
-        placeholder="Search by Artist name, title, and tag"
+        placeholder={placeHolder}
         onChange={handleChange}
       />
     </div>

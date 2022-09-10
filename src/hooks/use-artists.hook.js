@@ -1,44 +1,28 @@
 import { useEffect, useReducer, useState } from "react";
 
 import { defaultReducer } from "../reducer/defaultReducer";
-import { ARTISTS } from "../config/artists.config";
-
-const generateArtists = (artists = ARTISTS) => {
-  const generatedArtists = artists.map((a) => {
-    return {
-      id: a?.id,
-      name: a?.name,
-      description: a?.description,
-      age: a?.age,
-    };
-  });
-  return generatedArtists;
-};
-
-class ArtistClass {
-  constructor(id, name, description, age) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.age = age;
-  }
-}
+import { USERS } from "../config/database.config";
+import UserProfile from "../utils/UserProfileClass";
 
 export default function useArtists() {
   const [artists, setArtists] = useState([]);
   const [state, dispatch] = useReducer(defaultReducer, { loading: false, error: false, data: [] });
 
   useEffect(() => {
-    // TODO: Fetch artists from backend database...
     const fetchArtists = async () => {
       dispatch({ type: "PROCESSING" });
       try {
-        const res = generateArtists();
-        const mappedArtists = Object.values(res).map((a) => {
-          return new ArtistClass(a?.id, a?.name, a?.description, a?.age);
+        const artists = generateArtists();
+        const mapped = Object.values(artists).map((artist) => {
+          return new UserProfile(
+            artist?.walletAddress,
+            artist?.name,
+            artist?.email,
+            artist?.description
+          );
         });
-        dispatch({ type: "SUCCESS", payload: mappedArtists });
-        setArtists(mappedArtists);
+        dispatch({ type: "SUCCESS", payload: mapped });
+        setArtists(mapped);
       } catch (err) {
         dispatch({ type: "ERROR" });
       }
@@ -46,21 +30,42 @@ export default function useArtists() {
     fetchArtists();
   }, []);
 
-  const updateArtists = (filteredArtists) => {
+  // Generate artists whose 'isCreator' flag is true
+  // TODO: Fetch artists from backend database...
+  function generateArtists(users = USERS) {
+    const generatedArtists = users
+      .filter((user) => user.isCreator === true)
+      .map((user) => {
+        return {
+          walletAddress: user?.walletAddress,
+          name: user?.name,
+          email: user?.email,
+          description: user?.description,
+        };
+      });
+    return generatedArtists;
+  }
+
+  // Update react state to filtered artists
+  function updateArtists(filteredArtists) {
     dispatch({ type: "PROCESSING" });
     try {
-      if (filteredArtists.length === 0) {
-        dispatch({ type: "SUCCESS", payload: artists });
-      } else {
-        const mappedArtists = Object.values(filteredArtists).map((a) => {
-          return new ArtistClass(a?.id, a?.name, a?.description, a?.age);
+      let payload = artists;
+      if (filteredArtists.length !== 0) {
+        payload = Object.values(filteredArtists).map((artist) => {
+          return new UserProfile(
+            artist?.walletAddress,
+            artist?.name,
+            artist?.email,
+            artist?.description
+          );
         });
-        dispatch({ type: "SUCCESS", payload: mappedArtists });
       }
+      dispatch({ type: "SUCCESS", payload: payload });
     } catch (err) {
       dispatch({ type: "ERROR" });
     }
-  };
+  }
 
   return {
     ...state,

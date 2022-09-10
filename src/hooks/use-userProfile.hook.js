@@ -13,16 +13,27 @@ export default function useUserProfile() {
     if (accounts.length === 0) return;
 
     console.log("account updated!");
-    console.log(findUserByAccounts(accounts));
+    if (!isUserRegistered(accounts)) {
+      navigate("/registration");
+    } else {
+      const userProfile = findUserProfileByAccounts(accounts);
+      setUsername(userProfile.name);
+      setEmail(userProfile.email);
+    }
   }, [accounts]);
 
   function saveUserProfile(userProfile) {
     console.log(userProfile);
   }
 
-  function findUserByAccounts(accounts) {
-    console.log(accounts);
-    return USERS.filter((user) => user.walletAddress === accounts[0]);
+  function isUserRegistered(accounts) {
+    return Boolean(
+      USERS.filter((user) => user.walletAddress === accounts[0]).length !== 0 ? true : false
+    );
+  }
+
+  function findUserProfileByAccounts(accounts) {
+    return USERS.filter((user) => user.walletAddress === accounts[0])[0];
   }
 
   return {

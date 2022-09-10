@@ -11,14 +11,14 @@ import "./Navbar.css";
 const Navbar = () => {
   const navigate = useNavigate();
   const { isWalletCardVisible, setWalletCardVisible } = useWallet();
-  const { accounts, setAccounts } = useUserProfileContext();
+  const { accounts, username, setAccounts } = useUserProfileContext();
   const { isMetaMaskBtnDisabled, handleLoginMetaMask } = useMetaMask();
 
   const LOGO = `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png`;
   const SIGNINPROPS = {
     btnName: "SIGN IN",
     userProfile: {
-      name: "JUNHONG LEE",
+      name: username,
       accounts: accounts,
     },
     onClick: () => setWalletCardVisible(!isWalletCardVisible),

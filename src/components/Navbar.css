@@ -30,6 +30,8 @@
 }
 
 .navbar__menu__btn {
+  display: flex;
+  align-items: center;
   margin-right: 1.2rem;
   font-size: 1rem;
   font-weight: bold;
@@ -37,4 +39,19 @@
   background-color: white;
   border: none;
   cursor: pointer;
+}
+
+.navbar__user-profile {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  width: 26rem;
+  height: calc((100% - 0px) - 68px);
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(229, 232, 235);
+  overflow: auto;
+  filter: drop-shadow(rgba(0, 0, 0, 0.25) 0px 4px 4px);
+  transition: transform 0.3s ease 0s, opacity 0.3s ease 0s;
+  transform: translate3d(0px, 0px, 0px);
+  opacity: 1;
 }

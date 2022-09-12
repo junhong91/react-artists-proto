@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function useWallet() {
+export default function useWalletCard() {
   const [isWalletCardVisible, setWalletCardVisible] = useState(false);
 
   useEffect(() => {

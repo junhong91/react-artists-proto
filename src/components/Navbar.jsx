@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import Wallet from "./Wallet";
-import useWallet from "../hooks/use-wallet.hook";
+import useWalletCard from "../hooks/use-walletCard.hook";
 import useMetaMask from "../hooks/use-metamask.hook";
 import { useUserProfileContext } from "../providers/UserProfileProvider";
 import { NAV_ROUTES } from "../config/routes.config";
@@ -10,11 +10,13 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { isWalletCardVisible, setWalletCardVisible } = useWallet();
+  const { isWalletCardVisible, setWalletCardVisible } = useWalletCard();
   const { accounts, username, setAccounts } = useUserProfileContext();
   const { isMetaMaskBtnDisabled, handleLoginMetaMask } = useMetaMask();
 
   const CREAON_LOGO = `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png`;
+  const DEFAULT_USER_LOGO = `${process.env.PUBLIC_URL}/default_user_profile.png`;
+
   const SIGNINPROPS = {
     btnName: "SIGN IN",
     userProfile: {
@@ -48,11 +50,18 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
-          <button className="navbar__menu__btn" onClick={SIGNINPROPS.onClick}>
-            {SIGNINPROPS.userProfile.accounts.length === 0
-              ? SIGNINPROPS.btnName
-              : SIGNINPROPS.userProfile.name}
-          </button>
+
+          {SIGNINPROPS.userProfile.accounts.length === 0 && (
+            <button className="navbar__menu__btn" onClick={SIGNINPROPS.onClick}>
+              {SIGNINPROPS.btnName}
+            </button>
+          )}
+          {SIGNINPROPS.userProfile.accounts.length !== 0 && (
+            <button className="navbar__menu__btn">
+              <img src={DEFAULT_USER_LOGO} height="28px" />
+              {SIGNINPROPS.userProfile.name}
+            </button>
+          )}
         </ul>
       </nav>
       <Wallet
@@ -68,6 +77,7 @@ const Navbar = () => {
         visible={isWalletCardVisible}
         onClose={() => setWalletCardVisible(false)}
       />
+      <aside className="navbar__user-profile">Test</aside>
     </>
   );
 };

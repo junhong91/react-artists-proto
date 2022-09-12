@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { USERS } from "../config/database.config";
+import UserProfile from "../utils/UserProfileClass";
 
 export default function useUserProfile() {
   const navigate = useNavigate();
@@ -23,7 +24,17 @@ export default function useUserProfile() {
   }, [accounts]);
 
   function saveUserProfile(userProfile) {
-    console.log(userProfile);
+    USERS.push(
+      new UserProfile(
+        userProfile?.walletAddress,
+        userProfile?.name,
+        userProfile?.email,
+        userProfile?.description
+      )
+    );
+    setUsername(userProfile.name);
+    setEmail(userProfile.email);
+    console.log("saved new user profile!");
   }
 
   function isUserRegistered(accounts) {

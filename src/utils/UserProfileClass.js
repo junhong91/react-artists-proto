@@ -1,5 +1,5 @@
 class UserProfile {
-  constructor(walletAddress, name, email, description) {
+  constructor(walletAddress, name, email, description = "") {
     this.walletAddress = walletAddress;
     this.name = name;
     this.email = email;

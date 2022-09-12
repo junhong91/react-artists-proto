@@ -49,6 +49,7 @@ export default function useUserProfile() {
 
   return {
     accounts,
+    loggedIn: accounts.length !== 0,
     email,
     username,
     setAccounts,

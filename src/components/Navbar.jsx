@@ -10,10 +10,11 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
+
   // TODO: Move to custom react hook
   let isUserProfileVisible = false;
   const { isWalletCardVisible, setWalletCardVisible } = useWalletCard();
-  const { accounts, username, setAccounts } = useUserProfileContext();
+  const { accounts, loggedIn, username, setAccounts } = useUserProfileContext();
   const { isMetaMaskBtnDisabled, handleLoginMetaMask } = useMetaMask();
 
   const CREAON_LOGO = `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png`;
@@ -36,7 +37,6 @@ const Navbar = () => {
       userProfile.classList.add("open");
       userProfile.classList.remove("closed");
     } else {
-      console.log("TEST2");
       userProfile.classList.add("closed");
       userProfile.classList.remove("open");
     }
@@ -56,7 +56,9 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar__wrapper">
-        <img className="navbar__logo" src={CREAON_LOGO} alt="logo" onClick={() => navigate("/")} />
+        <button className="navbar__logo">
+          <img src={CREAON_LOGO} height="28px" alt="logo" onClick={() => navigate("/")} />
+        </button>
         <ul className="navbar__menu">
           {NAV_ROUTES &&
             NAV_ROUTES.map((route) => (
@@ -67,14 +69,14 @@ const Navbar = () => {
               </li>
             ))}
 
-          {SIGNINPROPS.userProfile.accounts.length === 0 && (
+          {!loggedIn && (
             <button className="navbar__menu__btn" onClick={SIGNINPROPS.onClick}>
               {SIGNINPROPS.btnName}
             </button>
           )}
-          {SIGNINPROPS.userProfile.accounts.length !== 0 && (
+          {loggedIn && (
             <button className="navbar__menu__btn" onClick={onClickUserProfile}>
-              <img src={DEFAULT_USER_LOGO} height="28px" />
+              <img src={DEFAULT_USER_LOGO} height="28px" alt="" />
               {SIGNINPROPS.userProfile.name}
             </button>
           )}
@@ -95,7 +97,6 @@ const Navbar = () => {
       />
       <aside className="navbar__user-profile closed">
         <div className="user-profile__sidebar__wrapper">
-          <button>Create</button>
           <button>Sign out</button>
         </div>
       </aside>

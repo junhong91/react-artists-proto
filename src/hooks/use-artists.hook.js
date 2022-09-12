@@ -9,10 +9,10 @@ export default function useArtists() {
   const [state, dispatch] = useReducer(defaultReducer, { loading: false, error: false, data: [] });
 
   useEffect(() => {
-    const fetchArtists = async () => {
+    const _fetchArtists = async () => {
       dispatch({ type: "PROCESSING" });
       try {
-        const artists = generateArtists();
+        const artists = _generateArtists();
         const mapped = Object.values(artists).map((artist) => {
           return new UserProfile(
             artist?.walletAddress,
@@ -27,12 +27,12 @@ export default function useArtists() {
         dispatch({ type: "ERROR" });
       }
     };
-    fetchArtists();
+    _fetchArtists();
   }, []);
 
   // Generate artists whose 'isCreator' flag is true
   // TODO: Fetch artists from backend database...
-  function generateArtists(users = USERS) {
+  function _generateArtists(users = USERS) {
     const generatedArtists = users
       .filter((user) => user.isCreator === true)
       .map((user) => {

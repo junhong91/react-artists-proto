@@ -1,0 +1,41 @@
+.registration-card__wrapper {
+  width: 20rem;
+  padding: 4% 0 0;
+  margin: 1rem auto;
+}
+
+.registration-card__title {
+  text-align: center;
+}
+
+.registration-card__form {
+  margin-top: 1.2rem;
+  padding: 1.8rem 1.2rem 1.2rem;
+  box-shadow: rgb(4 17 29 / 25%) 0px 0px 8px 0px;
+}
+
+.registration-card__label {
+  color: #72777c;
+  font-size: 0.8rem;
+}
+
+.registration-card__input {
+  background: #fbfbfb;
+  width: 100%;
+  padding: 0.1rem;
+  margin-top: 2px;
+  border: 1px solid #ddd;
+  font-size: 1.6rem;
+}
+
+.registration-card__sign-up__btn {
+  position: relative;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: 0.6rem;
+  margin-top: 1rem;
+  color: white;
+  background-color: black;
+  border-radius: 6px;
+}

@@ -14,7 +14,7 @@ const Navbar = () => {
   const { accounts, username, setAccounts } = useUserProfileContext();
   const { isMetaMaskBtnDisabled, handleLoginMetaMask } = useMetaMask();
 
-  const LOGO = `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png`;
+  const CREAON_LOGO = `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png`;
   const SIGNINPROPS = {
     btnName: "SIGN IN",
     userProfile: {
@@ -27,10 +27,9 @@ const Navbar = () => {
   async function handleLogin() {
     try {
       const newAccounts = await handleLoginMetaMask();
+      // When set accounts, user profile will be set.
       setAccounts(newAccounts);
       setWalletCardVisible(false);
-      // Get username / email from database
-      // if not exists, register [username/email]
     } catch (err) {
       console.error(err);
     }
@@ -39,7 +38,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar__wrapper">
-        <img className="navbar__logo" src={LOGO} alt="logo" onClick={() => navigate("/")} />
+        <img className="navbar__logo" src={CREAON_LOGO} alt="logo" onClick={() => navigate("/")} />
         <ul className="navbar__menu">
           {NAV_ROUTES &&
             NAV_ROUTES.map((route) => (

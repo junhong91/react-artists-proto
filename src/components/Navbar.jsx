@@ -10,12 +10,15 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  // TODO: Move to custom react hook
+  let isUserProfileVisible = false;
   const { isWalletCardVisible, setWalletCardVisible } = useWalletCard();
   const { accounts, username, setAccounts } = useUserProfileContext();
   const { isMetaMaskBtnDisabled, handleLoginMetaMask } = useMetaMask();
 
   const CREAON_LOGO = `${process.env.PUBLIC_URL}/Byredo_logo_wordmark.png`;
   const DEFAULT_USER_LOGO = `${process.env.PUBLIC_URL}/default_user_profile.png`;
+  const userProfile = document.querySelector(".navbar__user-profile");
 
   const SIGNINPROPS = {
     btnName: "SIGN IN",
@@ -25,6 +28,19 @@ const Navbar = () => {
     },
     onClick: () => setWalletCardVisible(!isWalletCardVisible),
   };
+
+  function onClickUserProfile() {
+    // TODO: Move to components
+    isUserProfileVisible = !isUserProfileVisible;
+    if (isUserProfileVisible) {
+      userProfile.classList.add("open");
+      userProfile.classList.remove("closed");
+    } else {
+      console.log("TEST2");
+      userProfile.classList.add("closed");
+      userProfile.classList.remove("open");
+    }
+  }
 
   async function handleLogin() {
     try {
@@ -57,7 +73,7 @@ const Navbar = () => {
             </button>
           )}
           {SIGNINPROPS.userProfile.accounts.length !== 0 && (
-            <button className="navbar__menu__btn">
+            <button className="navbar__menu__btn" onClick={onClickUserProfile}>
               <img src={DEFAULT_USER_LOGO} height="28px" />
               {SIGNINPROPS.userProfile.name}
             </button>
@@ -77,7 +93,12 @@ const Navbar = () => {
         visible={isWalletCardVisible}
         onClose={() => setWalletCardVisible(false)}
       />
-      <aside className="navbar__user-profile">Test</aside>
+      <aside className="navbar__user-profile closed">
+        <div className="user-profile__sidebar__wrapper">
+          <button>Create</button>
+          <button>Sign out</button>
+        </div>
+      </aside>
     </>
   );
 };
